@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>B2K Electrical | Services</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <a href="index.html" class="logo">B2K <span>ELECTRICAL</span></a>
+        <nav>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="products.html">Products</a></li>
+                <li><a href="services.html" class="active">Services</a></li>
+                <li><a href="reviews.html">Reviews</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+        <div class="header-actions">
+            <a href="tel:09157360153" class="call-btn">Call Us Now</a>
+            <button class="cart-icon-btn" onclick="toggleCart()">Cart <span class="cart-count">0</span></button>
+            <button class="menu-toggle" onclick="toggleMenu()">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+            </button>
+        </div>
+    </header>
+
+    <div class="page-banner">
+        <h1>Our Expert Services</h1>
+        <p>We do not just sell products; we deliver complete, professional engineering solutions.</p>
+    </div>
+
+    <section class="section-padding">
+        <div class="product-grid">
+            <div class="product-card" style="padding: 30px; text-align: center;">
+                <h3 style="color: var(--primary-blue); margin-bottom: 15px;">Solar Installation</h3>
+                <p style="color: #666; line-height: 1.6;">Complete residential and commercial solar system design and installation. We handle everything from panel mounting to inverter configuration.</p>
+            </div>
+            <div class="product-card" style="padding: 30px; text-align: center;">
+                <h3 style="color: var(--primary-blue); margin-bottom: 15px;">CCTV & Security Setup</h3>
+                <p style="color: #666; line-height: 1.6;">Professional installation of solar-powered CCTV cameras and smart security systems for homes, offices, and warehouses.</p>
+            </div>
+            <div class="product-card" style="padding: 30px; text-align: center;">
+                <h3 style="color: var(--primary-blue); margin-bottom: 15px;">Maintenance & Repair</h3>
+                <p style="color: #666; line-height: 1.6;">Routine maintenance, troubleshooting, and repair of existing solar and electrical infrastructure to ensure longevity.</p>
+            </div>
+            <div class="product-card" style="padding: 30px; text-align: center;">
+                <h3 style="color: var(--primary-blue); margin-bottom: 15px;">Energy Consultation</h3>
+                <p style="color: #666; line-height: 1.6;">We analyze your energy needs and design a custom solar solution that maximizes efficiency and saves you money.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col"><h4>B2K Electrical Co. Ltd.</h4><p>Brighten your world with smart solar solutions.</p></div>
+            <div class="footer-col"><h4>Quick Links</h4><a href="index.html">Home</a><a href="products.html">Products</a><a href="services.html">Services</a><a href="contact.html">Contact</a></div>
+            <div class="footer-col"><h4>Contact Us</h4><p>Phone: <a href="tel:09157360153">0915 736 0153</a></p><p>WhatsApp: <a href="https://wa.me/2347049913190" style="color:var(--whatsapp-green);">0704 991 3190</a></p></div>
+        </div>
+        <div class="footer-bottom"><p>&copy; 2024 B2K Electrical Company Ltd.</p></div>
+    </footer>
+
+    <div class="overlay" id="cartOverlay" onclick="toggleCart()"></div>
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header"><h2>Your Cart</h2><button class="close-cart" onclick="toggleCart()">&times;</button></div>
+        <div class="cart-items" id="cartItems"></div>
+        <div class="cart-footer"><div class="cart-total"><span>Total:</span><span id="cartTotalPrice">N 0</span></div><button class="checkout-btn" onclick="checkoutWhatsApp()">Checkout via WhatsApp</button></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
