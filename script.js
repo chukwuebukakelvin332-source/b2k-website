@@ -9,6 +9,9 @@ function toggleCart() {
 // Load cart from localStorage or start empty
 let cart = JSON.parse(localStorage.getItem('b2kCart')) || [];
 
+// Change the number here if it ever changes
+const WHATSAPP_NUMBER = "2347049913190";
+
 function updateCartBadge() {
     let totalItems = cart.reduce((sum, item) => sum + item.qty, 0);
     let badges = document.querySelectorAll('.cart-count');
@@ -81,18 +84,53 @@ function updateCartUI() {
     cartTotalPrice.innerText = `N ${total.toLocaleString()}`;
 }
 
+// Per-product "Order on WhatsApp" button
+// Called from products.html like: onclick="orderOnWhatsApp(event, this)"
+function orderOnWhatsApp(event, el) {
+    event.preventDefault();
+
+    const card = el.closest('.product-card');
+    if (!card) return;
+
+    const name = card.querySelector('h3').textContent.trim();
+    const price = card.querySelector('.price').textContent.trim();
+
+    const message =
+        "Hello B2K Electrical, I want to order:\n\n" +
+        "Product: " + name + "\n" +
+        "Price: " + price + "\n\n" +
+        "Please confirm availability and how to proceed with payment and delivery.";
+
+    window.open(
+        `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`,
+        '_blank'
+    );
+}
+
+// Cart checkout — sends every product, quantity, line total and grand total
 function checkoutWhatsApp() {
-    if (cart.length === 0) { alert("Your cart is empty."); return; }
-    let phoneNumber = "2347049913190"; 
-    let message = "Hello B2K Electrical, I would like to place an order:\n\n";
+    if (cart.length === 0) {
+        alert("Your cart is empty.");
+        return;
+    }
+
+    let message = "Hello B2K Electrical, I want to order:\n\n";
     let total = 0;
-    cart.forEach((item) => {
-        let itemTotal = item.price * item.qty;
-        message += `- ${item.name} (x${item.qty}): N${itemTotal.toLocaleString()}\n`;
+
+    cart.forEach((item, index) => {
+        const itemTotal = item.price * item.qty;
         total += itemTotal;
+        message += `${index + 1}. ${item.name}\n`;
+        message += `   Qty: ${item.qty} x N${item.price.toLocaleString()} = N${itemTotal.toLocaleString()}\n\n`;
     });
-    message += `\n*Total: N${total.toLocaleString()}*\n\nPlease let me know how to proceed with payment and delivery.`;
-    window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`, '_blank');
+
+    message += `*Total: N${total.toLocaleString()}*\n\n`;
+    message += "Please confirm availability and how to proceed with payment and delivery.";
+
+    window.open(
+        `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`,
+        '_blank'
+    );
 }
 
 function submitReview(event) {
